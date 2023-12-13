@@ -1,0 +1,63 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+#btnCerrar {
+    background-color: #9a1414;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    
+}
+
+#btnActualizar {
+    background-color: #48110d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.dataTables_filter input[type="search"]{
+    margin-left: auto;
+    
+}
+
+.table{
+    margin-top:80px;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+#deletee{
+    background-color: #80808056;
+    width: 900px;
+    height: 500px;
+    margin-left: 150px;
+    border-radius: 20px
+}
+
+#deleteeP {
+    background-color: #80808056;
+    width: 900px;
+    height: 660px;
+    margin-left: 150px;
+    border-radius: 20px
+}

@@ -1,0 +1,68 @@
+﻿@model LuchoSoft.Models.Pedido
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div id="deleteeP">
+    <h1 style="display: flex; justify-content:center;">Detalle</h1>
+
+    <div style="align-items: center;">
+        <h4 style="display: flex; justify-content:center;">Pedido</h4>
+        <hr />
+        <dl class="row" class="row" style="display:block; justify-content:center; margin-left:350px">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FechaVenta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaVenta)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FechaPedido)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FechaPedido)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EstadoPedido)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EstadoPedido)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalVenta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalVenta)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalPedido)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalPedido)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdClientePedidosNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdClientePedidosNavigation.IdCliente)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdEmpleadoPedidosNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdEmpleadoPedidosNavigation.IdEmpleado)
+            </dd>
+        </dl>
+    </div>
+    <div style="margin-left:380px">
+        <a asp-action="Edit" asp-route-id="@Model?.IdPedido" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-danger">Cerrar</a>
+    </div>
+
+</div>

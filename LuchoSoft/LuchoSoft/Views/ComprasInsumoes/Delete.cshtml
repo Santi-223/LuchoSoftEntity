@@ -1,0 +1,120 @@
+﻿@model LuchoSoft.Models.ComprasInsumo
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #9c9c9c;
+        border-radius: 10px;
+        background-color: #dee3df;
+    }
+
+    .delete-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .delete-header h1 {
+            margin-bottom: 10px;
+        }
+
+    .delete-message {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .delete-details {
+        padding: 20px;
+        border: 2px solid #9c9c9c;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+
+        .delete-details dl {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+        }
+
+        .delete-details dt {
+            font-weight: bold;
+        }
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .delete-actions .btn-danger {
+            margin-right: 10px;
+        }
+</style>
+
+<div class="container">
+    <div class="delete-header">
+        <h1>Eliminar</h1>
+    </div>
+
+    <div class="delete-message">
+        <h3>¿Estás seguro de eliminar esto?</h3>
+    </div>
+
+    <div class="delete-details">
+        <h4>ComprasInsumo</h4>
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.CantidadInsumoComprasInsumos)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CantidadInsumoComprasInsumos)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PrecioInsumoComprasInsumos)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrecioInsumoComprasInsumos)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IdCompraComprasInsumosNavigation)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IdCompraComprasInsumosNavigation.IdCompra)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IdInsumoComprasInsumosNavigation)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IdInsumoComprasInsumosNavigation.IdInsumo)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="delete-actions">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="IdComprasInsumos" />
+            <div class="d-flex justify-content-around">
+                <div class="form-group">
+                    <input type="submit" value="Eliminar" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px;" />
+                </div>
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                </div>
+            </div>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</div>

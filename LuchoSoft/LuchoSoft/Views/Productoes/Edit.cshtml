@@ -1,0 +1,111 @@
+﻿@model LuchoSoft.Models.Producto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #Formulario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        margin-top: 20px; /* Ajusta el espacio entre el menú y el formulario según tus preferencias */
+    }
+
+    .form-group {
+        margin-bottom: 30px; /* Ajusta el espacio entre los elementos del formulario según tus preferencias */
+        margin-left: 20px;
+    }
+
+    #formularioRecuadro {
+        border: 2px solid #9c9c9c; /* Color y grosor del borde */
+        padding: 5px; /* Espaciado interno para separar el contenido del borde */
+        border-radius: 10px; /* Bordes redondeados */
+        background-color: #dee3df;
+    }
+</style>
+
+<h1 class="text-center">Editar</h1>
+
+<hr />
+<div id="formularioRecuadro">
+    <div id="Formulario" class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdProducto" />
+
+                @*
+                <div class="form-group">
+                <i class="fa-solid fa-image" style="color: #e12424;"></i>
+                <label asp-for="ImagenProducto" class="control-label"></label>
+                <input asp-for="ImagenProducto" class="form-control" />
+                <span asp-validation-for="ImagenProducto" class="text-danger"></span>
+                </div>
+                *@
+
+                <div class="form-group">
+                    <i class="fa-solid fa-signature" style="color: #e12424;"></i>
+                    <label asp-for="NombreProducto" class="control-label"></label>
+                    <input asp-for="NombreProducto" class="form-control" />
+                    <span asp-validation-for="NombreProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-comment-dots" style="color: #e12424;"></i>
+                    <label asp-for="DescripcionProducto" class="control-label"></label>
+                    <input asp-for="DescripcionProducto" class="form-control" />
+                    <span asp-validation-for="DescripcionProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-toggle-on" style="color: #e12424;"></i>
+                    <label asp-for="EstadoProducto" class="control-label"></label>
+                    <input asp-for="EstadoProducto" class="form-control" />
+                    <span asp-validation-for="EstadoProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-dollar-sign" style="color: #e12424;"></i>
+                    <label asp-for="PrecioProducto" class="control-label"></label>
+                    <input asp-for="PrecioProducto" class="form-control" />
+                    <span asp-validation-for="PrecioProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-bowl-food" style="color: #e12424;"></i>
+                    <label asp-for="IdCategoriaProductoProductos" class="control-label"></label>
+                    <select asp-for="IdCategoriaProductoProductos" class="form-control" asp-items="ViewBag.IdCategoriaProductoProductos"></select>
+                    <span asp-validation-for="IdCategoriaProductoProductos" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-around">
+
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                    </div>
+                </div>
+
+                
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

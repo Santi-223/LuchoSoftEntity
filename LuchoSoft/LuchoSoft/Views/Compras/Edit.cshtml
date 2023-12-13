@@ -1,0 +1,94 @@
+﻿@model LuchoSoft.Models.Compra
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #Formulario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 30px;
+        margin-left: 20px;
+    }
+
+    #formularioRecuadro {
+        border: 2px solid #9c9c9c;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #dee3df;
+    }
+</style>
+
+<h1 class="text-center">Editar</h1>
+
+<hr />
+<div id="formularioRecuadro">
+    <div id="Formulario" class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdCompra" />
+                <div class="form-group">
+                    <i class="fa-solid fa-signature" style="color: #e12424;"></i>
+                    <label asp-for="NombreCompra" class="control-label"></label>
+                    <input asp-for="NombreCompra" class="form-control" />
+                    <span asp-validation-for="NombreCompra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-calendar-days" style="color: #e12424;"></i>
+                    <label asp-for="FechaCompra" class="control-label"></label>
+                    <input asp-for="FechaCompra" class="form-control" />
+                    <span asp-validation-for="FechaCompra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-store" style="color: #e12424;"></i>
+                    <label asp-for="EstadoCompra" class="control-label"></label>
+                    <input asp-for="EstadoCompra" class="form-control" />
+                    <span asp-validation-for="EstadoCompra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-bag-shopping" style="color: #e12424;"></i>
+                    <label asp-for="TotalCompra" class="control-label"></label>
+                    <input asp-for="TotalCompra" class="form-control" />
+                    <span asp-validation-for="TotalCompra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-person" style="color: #e12424;"></i>
+                    <label asp-for="IdProveedorCompras" class="control-label"></label>
+                    <select asp-for="IdProveedorCompras" class="form-control" asp-items="ViewBag.IdProveedorCompras"></select>
+                    <span asp-validation-for="IdProveedorCompras" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-around">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px;" />
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

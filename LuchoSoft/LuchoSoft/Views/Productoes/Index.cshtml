@@ -1,0 +1,283 @@
+﻿
+@*
+
+@model IEnumerable<LuchoSoft.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    #Acciones {
+        display: flex;
+        margin-right: 10px;
+    }
+
+    #Titulo {
+        margin-top: 50px;
+    }
+
+    #botonCrear {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+</style>
+
+<h1 id="Titulo">Productos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-danger" style="background-color: #e12424; color: white;" id="botonCrear">Registrar</a>
+</p>
+<table class="table" id="productos-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagenProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescripcionProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoriaProductoProductosNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImagenProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCategoriaProductoProductosNavigation.IdCategoriaProductos)
+                </td>
+                <td>
+                    <div id="Acciones">
+                        <a asp-action="Edit" asp-route-id="@item.IdProducto" class="btn btn-primary" style="background-color: #48110d;">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <a asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-info" style="background-color: #00FFFF;">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.IdProducto" class="btn btn-danger" style="background-color: #e12424;">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+    let table = new DataTable('#ProductosTable');
+
+    $(document).ready(function () {
+        $('#ProductosTable').DataTable({
+            lengthMenu: [5], // Establece el número de registros a mostrar en el dropdown
+            pageLength: 5, // Muestra solo 5 registros por página
+            paging: true, // Activa la paginación
+            searching: true, // Activa la búsqueda
+            ordering: true, // Activa la ordenación
+            info: true,
+        });       
+
+
+        $('.dataTables_length').hide();
+        $('.dataTables_info').hide();
+        $('.dataTables_filter').addClass('pull-left');
+
+    });
+
+</script>}
+ 
+
+<script>
+    $(document).ready(function () {
+        var table = $('table.display').DataTable({
+            lengthMenu: [5], // Establece el número de registros a mostrar en el dropdown
+            pageLength: 5, // Muestra solo 5 registros por página
+            paging: true, // Activa la paginación
+            searching: true, // Activa la búsqueda
+            ordering: true, // Activa la ordenación
+            info: true, // Muestra la información de paginación
+        });
+
+        $('.dataTables_length').hide();
+        $('.dataTables_info').hide();
+        $('.dataTables_filter').addClass('pull-left');
+
+    });
+
+</script>
+
+
+@section scripts {
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#productos-table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar MENU registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando START a END de TOTAL entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de MAX entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '600px');
+        });
+    </script>
+    }
+
+
+    *@
+
+
+
+
+@model IEnumerable<LuchoSoft.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="~/css/estilosarley.css" asp-append-version="true" />
+
+
+<style>
+    h1{
+        margin-top:40px;
+        margin-bottom: 40px;
+    }
+
+    #botones{
+        margin-top:40px;
+        margin-bottom:40px;
+    }
+
+</style>
+
+
+<h1>Gestión de productos</h1>
+<p id="botones">
+    <a asp-action="Create" class="btn btn-danger text-white" style="font-size: 18px; width: 100px;">Registrar</a>
+</p>
+
+<table class="table" id="producto-table">
+    <thead>
+        <tr>
+            @*<th>@Html.DisplayNameFor(model => model.ImagenProducto)</th>*@
+            <th>@Html.DisplayNameFor(model => model.NombreProducto)</th>
+            <th>@Html.DisplayNameFor(model => model.DescripcionProducto)</th>
+            <th>@Html.DisplayNameFor(model => model.EstadoProducto)</th>
+            <th>@Html.DisplayNameFor(model => model.PrecioProducto)</th>
+            <th>@Html.DisplayNameFor(model => model.IdCategoriaProductoProductosNavigation)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>@Html.DisplayFor(modelItem => item.ImagenProducto)</td>*@
+                <td>@Html.DisplayFor(modelItem => item.NombreProducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.DescripcionProducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstadoProducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.PrecioProducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.IdCategoriaProductoProductosNavigation.IdCategoriaProductos)</td>
+                <td>
+                    <div class="d-flex justify-content-around"> 
+                    <a asp-action="Edit" asp-route-id="@item.IdProducto" class="icon-box"><i class="fas fa-edit edit-icon"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.IdProducto" class="icon-box"><i class="fas fa-info details-icon"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IdProducto" class="icon-box"><i class="fas fa-trash-alt delete-icon"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#producto-table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "Buscar:",
+                    //"lengthMenu": "Mostrar MENU registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    //"info": "Mostrando START a END de TOTAL entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de MAX entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '600px');
+        });
+    </script>
+
+}
+
+

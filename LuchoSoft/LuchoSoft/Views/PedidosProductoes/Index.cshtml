@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LuchoSoft.Models.PedidosProducto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPedidoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subtotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPedidoPedidosProductosNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProductoPedidosProductosNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPedidoProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPedidoPedidosProductosNavigation.IdPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProductoPedidosProductosNavigation.IdProducto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPedidosProductos">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPedidosProductos">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPedidosProductos">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LuchoSoft.Models.RolesPermiso>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRolesPermisos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPermisoRolesPermisosNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRolRolesPermisosNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRolesPermisos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPermisoRolesPermisosNavigation.IdPermiso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRolRolesPermisosNavigation.IdRol)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdRolesPermisos">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdRolesPermisos">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdRolesPermisos">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

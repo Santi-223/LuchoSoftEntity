@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LuchoSoft.Models.Proveedore>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<h1>Gestión de Proveedores</h1>
+<p>
+    <a asp-action="Create" class="btn btn-danger text-white">Registrar Nuevo Proveedor</a>
+    <a href="@Url.Action("GeneratePDF", "Proveedores")" class="btn btn-primary">Generar PDF</a>
+</p>
+
+<table class="table" id="proveedores-table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.NombreProveedor)</th>
+            <th>@Html.DisplayNameFor(model => model.TelefonoProveedor)</th>
+            <th>@Html.DisplayNameFor(model => model.DireccionProveedor)</th>
+            <th>@Html.DisplayNameFor(model => model.EstadoProveedor)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NombreProveedor)</td>
+                <td>@Html.DisplayFor(modelItem => item.TelefonoProveedor)</td>
+                <td>@Html.DisplayFor(modelItem => item.DireccionProveedor)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstadoProveedor)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdProveedor" class="icon-box"><i class="fas fa-edit edit-icon"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.IdProveedor" class="icon-box"><i class="fas fa-info details-icon"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IdProveedor" class="icon-box"><i class="fas fa-trash-alt delete-icon"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#proveedores-table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '600px');
+        });
+    </script>
+}

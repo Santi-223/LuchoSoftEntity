@@ -1,0 +1,142 @@
+﻿@*
+
+    @model IEnumerable<LuchoSoft.Models.CategoriaProducto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCategoriaProductos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoCategoriaProductos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCategoriaProductos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCategoriaProductos)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdCategoriaProductos">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdCategoriaProductos">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCategoriaProductos">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+*@
+
+
+
+
+@model IEnumerable<LuchoSoft.Models.CategoriaProducto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="~/css/estilosarley.css" asp-append-version="true" />
+
+
+<style>
+    h1 {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    #botones {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+</style>
+
+
+<h1>Gestión categoria de productos</h1>
+<p id="botones">
+    <a asp-action="Create" class="btn btn-danger text-white" style="font-size: 18px; width: 100px;">Registrar</a>
+</p>
+
+<table class="table" id="producto-table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.NombreCategoriaProductos)</th>
+            <th>@Html.DisplayNameFor(model => model.EstadoCategoriaProductos)</th>
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NombreCategoriaProductos)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstadoCategoriaProductos)</td>
+             
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <a asp-action="Edit" asp-route-id="@item.IdCategoriaProductos" class="icon-box"><i class="fas fa-edit edit-icon"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.IdCategoriaProductos" class="icon-box"><i class="fas fa-info details-icon"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.IdCategoriaProductos" class="icon-box"><i class="fas fa-trash-alt delete-icon"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#producto-table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "Buscar:",
+                    //"lengthMenu": "Mostrar MENU registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    //"info": "Mostrando START a END de TOTAL entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de MAX entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '600px');
+        });
+    </script>
+
+}
+
+

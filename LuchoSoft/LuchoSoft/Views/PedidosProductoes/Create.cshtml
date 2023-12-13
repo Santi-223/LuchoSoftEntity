@@ -1,0 +1,51 @@
+﻿@model LuchoSoft.Models.PedidosProducto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PedidosProducto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaPedidoProducto" class="control-label"></label>
+                <input asp-for="FechaPedidoProducto" class="form-control" />
+                <span asp-validation-for="FechaPedidoProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadProducto" class="control-label"></label>
+                <input asp-for="CantidadProducto" class="form-control" />
+                <span asp-validation-for="CantidadProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtotal" class="control-label"></label>
+                <input asp-for="Subtotal" class="form-control" />
+                <span asp-validation-for="Subtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdProductoPedidosProductos" class="control-label"></label>
+                <select asp-for="IdProductoPedidosProductos" class ="form-control" asp-items="ViewBag.IdProductoPedidosProductos"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPedidoPedidosProductos" class="control-label"></label>
+                <select asp-for="IdPedidoPedidosProductos" class ="form-control" asp-items="ViewBag.IdPedidoPedidosProductos"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

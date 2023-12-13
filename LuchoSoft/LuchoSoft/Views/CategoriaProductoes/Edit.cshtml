@@ -1,0 +1,128 @@
+﻿@*
+    @model LuchoSoft.Models.CategoriaProducto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CategoriaProducto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCategoriaProductos" />
+            <div class="form-group">
+                <label asp-for="NombreCategoriaProductos" class="control-label"></label>
+                <input asp-for="NombreCategoriaProductos" class="form-control" />
+                <span asp-validation-for="NombreCategoriaProductos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoCategoriaProductos" class="control-label"></label>
+                <input asp-for="EstadoCategoriaProductos" class="form-control" />
+                <span asp-validation-for="EstadoCategoriaProductos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+*@
+
+@model LuchoSoft.Models.CategoriaProducto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #Formulario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        margin-top: 20px; /* Ajusta el espacio entre el menú y el formulario según tus preferencias */
+    }
+
+    .form-group {
+        margin-bottom: 30px; /* Ajusta el espacio entre los elementos del formulario según tus preferencias */
+        margin-left: 20px;
+    }
+
+    #formularioRecuadro {
+        border: 2px solid #9c9c9c; /* Color y grosor del borde */
+        padding: 5px; /* Espaciado interno para separar el contenido del borde */
+        border-radius: 10px; /* Bordes redondeados */
+        background-color: #dee3df;
+        height:400px;
+    }
+</style>
+
+<h1 class="text-center">Editar</h1>
+
+<hr />
+<div id="formularioRecuadro">
+    <div id="Formulario" class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" style="margin-top:40px;">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdCategoriaProductos" />
+                <div class="form-group">
+                    <i class="fa-solid fa-signature" style="color: #e12424;"></i>
+                    <label asp-for="NombreCategoriaProductos" class="control-label"></label>
+                    <input asp-for="NombreCategoriaProductos" class="form-control" />
+                    <span asp-validation-for="NombreCategoriaProductos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa-solid fa-toggle-on" style="color: #e12424;"></i>
+                    <label asp-for="EstadoCategoriaProductos" class="control-label"></label>
+                    <input asp-for="EstadoCategoriaProductos" class="form-control" />
+                    <span asp-validation-for="EstadoCategoriaProductos" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-around" style="margin-top:50px;">
+
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                    </div>
+                </div>
+
+              
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+                

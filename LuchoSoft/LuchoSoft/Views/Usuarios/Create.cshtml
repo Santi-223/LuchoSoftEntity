@@ -1,0 +1,80 @@
+﻿@model LuchoSoft.Models.Usuario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<center>
+    <h1>Crear Usuario</h1>
+</center>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <input asp-for="IdUsuario" class="form-control" />
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreUsuario" class="control-label"></label>
+                <input asp-for="NombreUsuario" class="form-control" readonly/>
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contraseña" class="control-label"></label>
+                <input asp-for="Contraseña" class="form-control" />
+                <span asp-validation-for="Contraseña" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdRolUsuarios" class="control-label"></label>
+                <select asp-for="IdRolUsuarios" class ="form-control" asp-items="ViewBag.IdRolUsuarios"></select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<!-- Agrega SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Script para mostrar SweetAlert y confirmar la eliminación -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Busca el formulario por su ID o clase y escucha el evento submit
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Muestra el SweetAlert de confirmación
+            Swal.fire({
+                title: 'Confirmación',
+                text: '¿Deseas registrar el nuevo Usuario?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma la eliminación, envía el formulario
+                    this.submit();
+                }
+            });
+        });
+    });
+</script>

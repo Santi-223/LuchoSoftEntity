@@ -1,0 +1,102 @@
+﻿@model LuchoSoft.Models.Pedido
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="text-align: center">
+    <h1>Editar</h1>
+
+    <h4>Pedidos</h4>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4"  style="margin-right: -34%; margin-left:34%">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdPedido" />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-chat-left" style="color: red"></i>
+                    <label asp-for="Observaciones" class="control-label"></label>
+                </div>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-calendar-event" style="color: red"></i>
+                    <label asp-for="FechaVenta" class="control-label"></label>
+                </div>
+                <input asp-for="FechaVenta" class="form-control" />
+                <span asp-validation-for="FechaVenta" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-calendar-event" style="color: red"></i>
+                    <label asp-for="FechaPedido" class="control-label"></label>
+                </div>
+                <input asp-for="FechaPedido" class="form-control" />
+                <span asp-validation-for="FechaPedido" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+
+                    <label asp-for="EstadoPedido" class="control-label"></label>
+                </div>
+                <input asp-for="EstadoPedido" class="form-control" />
+                <span asp-validation-for="EstadoPedido" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-calculator" style="color:red"></i>
+                    <label asp-for="TotalVenta" class="control-label"></label>
+                </div>
+                <input asp-for="TotalVenta" class="form-control" />
+                <span asp-validation-for="TotalVenta" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-calculator" style="color:red"></i>
+                    <label asp-for="TotalPedido" class="control-label"></label>
+                </div>
+                <input asp-for="TotalPedido" class="form-control" />
+                <span asp-validation-for="TotalPedido" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-key-fill" style="color: red"></i>
+                    <label asp-for="IdClientePedidos" class="control-label"></label>
+                </div>
+                <select asp-for="IdClientePedidos" class="form-control" asp-items="ViewBag.IdClientePedidos"></select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="display:flex; text-align:center">
+                    <i class="bi bi-key-fill" style="color: red"></i>
+                    <label asp-for="IdEmpleadoPedidos" class="control-label"></label>
+                </div>
+                <select asp-for="IdEmpleadoPedidos" class="form-control" asp-items="ViewBag.IdEmpleadoPedidos"></select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-warning" style="margin-right: 30px" />
+                <a asp-action="Index" class="btn btn-danger">Cerrar</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,216 @@
+﻿
+@*
+@model LuchoSoft.Models.Producto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagenProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImagenProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DescripcionProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DescripcionProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrecioProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCategoriaProductoProductosNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCategoriaProductoProductosNavigation.IdCategoriaProductos)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdProducto" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+*@
+
+
+
+@model LuchoSoft.Models.Producto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #Delete {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #Botones {
+        margin-top: 70px;
+    }
+
+
+
+    .form-group {
+        margin-bottom: 30px;
+        margin-left: 20px;
+    }
+
+    #deleteRecuadro {
+        margin-left: 270px;
+        text-align: end;
+        width: 600px;
+        margin-top: 40px;
+        border: 2px solid #9c9c9c;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #dee3df;
+    }
+
+    .fa-solid {
+        margin-right: 10px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+
+<!-- Agrega la referencia a SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<h1>Eliminando producto</h1>
+<hr>
+
+
+<div>
+  
+    <div id="deleteRecuadro">
+        <div id="Delete">
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImagenProducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ImagenProducto)
+                </dd>
+                <hr>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NombreProducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NombreProducto)
+                </dd>
+                <hr>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DescripcionProducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DescripcionProducto)
+                </dd>
+                <hr>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EstadoProducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EstadoProducto)
+                </dd>
+                <hr>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PrecioProducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PrecioProducto)
+                </dd>
+                <hr>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IdCategoriaProductoProductosNavigation)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IdCategoriaProductoProductosNavigation.IdCategoriaProductos)
+                </dd>
+                <hr>
+            </dl>          
+
+            
+
+            <div id="Botones" class="d-flex justify-content-between">
+                <form id="deleteForm" asp-action="Delete" class="d-flex">
+                    <input type="hidden" asp-for="IdProducto" />
+
+                    <!-- Elimina el botón de enviar y usa un enlace o un botón separado para mostrar SweetAlert -->
+                    <button type="button" onclick="confirmDelete()" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; height:45px; width: 100px; text-decoration: none; color: #fff; display: inline-block; text-align: center; padding: 6px 12px; margin-bottom: 0; font-weight: normal; line-height: 1.42857143; white-space: nowrap; vertical-align: middle; touch-action: manipulation; cursor: pointer; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px;">Eliminar</button>
+                    <div id="Volver" class="form-group">
+                        <a asp-action="Index" class="btn btn-danger" style="background-color: #48110d; font-size: 18px; height:45px; width: 100px;">Volver</a>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- Modifica el formulario para usar SweetAlert -->
+           
+        </div>
+    </div>
+  
+</div>
+
+<!-- Agrega el script de SweetAlert -->
+<script>
+    function confirmDelete() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡No podrás revertir esto!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e12424',
+            cancelButtonColor: '#48110d',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText:'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, envía el formulario
+                document.getElementById('deleteForm').submit();
+            }
+        });
+    }
+</script>
+

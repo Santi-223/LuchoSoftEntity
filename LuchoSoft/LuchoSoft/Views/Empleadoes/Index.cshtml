@@ -1,0 +1,129 @@
+﻿@model LuchoSoft.Models.EmpleadosUsuarios
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<center><h1>Gestión de Empleados</h1></center>
+
+<br />
+<p>
+    <a asp-action="Create" class="btn btn-danger text-white">Crear empleado</a>
+    <a asp-action="GenerarPDF" class="btn btn-primary text-white">Generar Reportes</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Contraseña
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Funciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach (var item in Model.ListaEmpleados)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEmpleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelefonoEmpleado)
+                </td>
+                @{
+                    var sent = false;
+                    foreach (var x in Model.ListaUsuarios)
+                    {
+                        if (x.NombreUsuario == item.NombreEmpleado)
+                        {
+                            <td>
+                                @x.Email
+                            </td>
+                            <td>
+                                <span class="hidden-password">@string.Join("", Enumerable.Repeat("*", x.Contraseña.Length))</span>
+                            </td>
+                            sent = true;
+                            break;
+                        }
+
+                    }
+                    if (sent == false)
+                    {
+                        <td>
+                            No encontrado
+                        </td>
+                        <td>
+                            No encontrado
+                        </td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.DireccionEmpleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoEmpleado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdEmpleado" class="icon-box">
+                        <i class="fas fa-edit edit-icon"></i>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.IdEmpleado" class="icon-box">
+                        <i class="fas fa-info details-icon"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.IdEmpleado" class="icon-box">
+                        <i class="fas fa-trash-alt delete-icon"></i>
+                    </a>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+
+<script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '600px');
+
+        });
+    </script>

@@ -1,0 +1,82 @@
+﻿@model LuchoSoft.Models.EmpleadosUsuarios
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<center><h1>Listado de Empleados</h1></center>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Contraseña
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Estado
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+        }
+        @foreach (var item in Model.ListaEmpleados)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEmpleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelefonoEmpleado)
+                </td>
+                @{
+                    var sent = false;
+                    foreach (var x in Model.ListaUsuarios)
+                    {
+                        if (x.NombreUsuario == item.NombreEmpleado)
+                        {
+                            <td>
+                                @x.Email
+                            </td>
+                            <td>
+                                <span class="hidden-password">@string.Join("", Enumerable.Repeat("*", x.Contraseña.Length))</span>
+                            </td>
+                            sent = true;
+                            break;
+                        }
+
+                    }
+                    if (sent == false)
+                    {
+                        <td>
+                            No encontrado
+                        </td>
+                        <td>
+                            No encontrado
+                        </td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.DireccionEmpleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoEmpleado)
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>

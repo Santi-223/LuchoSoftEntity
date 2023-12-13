@@ -1,0 +1,140 @@
+﻿@model IEnumerable<LuchoSoft.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<h1 style="text-align: center; margin-bottom:40px">Clientes registrados</h1>
+
+<p style="display:flex; justify-content:end; margin-bottom:-30px">
+    <a asp-action="Create" style="text-decoration: none; color: white"><button id="btnCerrar" style="margin-right:20px">Registrar un nuevo cliente</button></a>
+    
+    <a href="@Url.Action("GeneratePDFClientes", "Clientes")"><button id="btnActualizar" style="margin-left:20px; width:200px">Reporte</button></a>
+    
+</p>
+<table class="table" id="clientes-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefonoCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DireccionCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteFrecuente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoCliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            string state;
+            string fondo;
+            string frecuencia;
+
+
+            @if(item.ClienteFrecuente == 1)
+            {
+                frecuencia = "Frecuente";
+            }
+            else
+            {
+                frecuencia = "No es frecuente";
+
+            }
+
+            @if (item.EstadoCliente == 1)
+            {
+                fondo = "background: lightgreen;";
+                state = "Activo";
+            }
+            else
+            {
+                fondo = "background: lightcoral;";
+                state = "Inactivo";
+            }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionCliente)
+            </td>
+            <td style= "width:5px; height: 5px">
+                @Html.DisplayFor(modelItem => frecuencia)
+            </td>
+            <td style= "width:5px; height: 5px; @fondo" >
+                @Html.DisplayFor(modelItem => state)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdCliente"><i class="fas fa-edit edit-icon" style="color:#FF9900;"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.IdCliente"><i class="fa-solid fa-circle-info" style="color:green;"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IdCliente"><i class="fa-solid fa-trash" style="color:red"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts{
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#clientes-table').DataTable({
+                "paging": true,
+                "lengthMenu": [5, 10, 25, 50], // Opciones de cantidad por página
+                "pageLength": 5, // Cantidad por página inicial
+                "language": {
+                    "search": "",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas en total)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                // Otras configuraciones de DataTables
+            });
+
+            // Ajustar el ancho del buscador
+            $('.dataTables_filter input[type="search"]').css('width', '500px');
+            $('.dataTables_filter input[type="search"]').css('border-radius', '20px');
+            $('.dataTables_filter input[type="search"]').css('border', '1px solid')
+
+            var filterInput = $('.dataTables_filter input[type="search"]');
+            var lengthMenuContainer = $('.dataTables_length');
+
+            // Crear un nuevo contenedor para la barra de búsqueda y los botones
+            var newContainer = $('<div class="custom-filter-container"></div>');
+
+            // Agregar la barra de búsqueda al nuevo contenedor
+            newContainer.append(filterInput);
+
+            // Insertar el nuevo contenedor antes del contenedor original de la barra de búsqueda
+            lengthMenuContainer.before(newContainer);
+
+        });
+        
+
+    </script>
+}

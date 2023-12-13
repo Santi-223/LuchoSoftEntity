@@ -1,0 +1,125 @@
+﻿@model LuchoSoft.Models.Proveedore
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #9c9c9c;
+        border-radius: 10px;
+        background-color: #dee3df;
+    }
+
+    .delete-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .delete-header h1 {
+            margin-bottom: 10px;
+        }
+
+    .delete-content {
+        padding: 20px;
+        border: 2px solid #9c9c9c;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+    .col-sm-2 {
+        font-weight: bold;
+    }
+
+    .btn-danger {
+        background-color: #e12424;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #ff3c3c;
+        }
+
+    .back-to-list {
+        margin-top: 20px;
+        display: block;
+        text-align: center;
+    }
+
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="delete-header">
+        <h1>Eliminar</h1>
+    </div>
+
+    <div class="delete-content">
+        <h4>Proveedor</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NombreProveedor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreProveedor)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TelefonoProveedor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TelefonoProveedor)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DireccionProveedor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DireccionProveedor)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EstadoProveedor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EstadoProveedor)
+            </dd>
+        </dl>
+
+        <div class="delete-actions">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="IdProveedor" />
+                <div class="d-flex justify-content-around">
+                    <div class="form-group">
+                        <input type="submit" value="Eliminar" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px;" />
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

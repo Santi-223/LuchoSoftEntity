@@ -1,0 +1,84 @@
+﻿@model LuchoSoft.Models.Empleado
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<center>
+    <h1>Eliminar Empleado</h1>
+</center>
+
+<br />
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagenEmpleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImagenEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreEmpleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TelefonoEmpleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TelefonoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DireccionEmpleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DireccionEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoEmpleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoEmpleado)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" id="deleteForm">
+        <input type="hidden" asp-for="IdEmpleado" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Cancelar</a>
+    </form>
+</div>
+
+<!-- Agrega SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Script para mostrar SweetAlert y confirmar la eliminación -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Busca el formulario por su ID o clase y escucha el evento submit
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Muestra el SweetAlert de confirmación
+            Swal.fire({
+                title: '¿Deseas eliminar el empleado?',
+                text: '¡Esta acción es irrevertible!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma la eliminación, envía el formulario
+                    this.submit();
+                }
+            });
+        });
+    });
+</script>
+

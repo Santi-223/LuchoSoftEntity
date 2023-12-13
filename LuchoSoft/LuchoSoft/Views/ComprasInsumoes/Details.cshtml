@@ -1,0 +1,110 @@
+﻿
+@model LuchoSoft.Models.ComprasInsumo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<script src="https://kit.fontawesome.com/3699f31e0a.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+        
+    }
+
+    #Detalles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #Botones{
+        margin-top:70px;
+    }
+
+   
+
+    .form-group {
+        margin-bottom: 30px;
+        margin-left: 20px;
+    }
+
+    #detallesRecuadro {
+        margin-left:270px;
+        text-align:end;
+        width:600px;
+        margin-top:40px;
+        border: 2px solid #9c9c9c;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #dee3df;
+    }
+
+    .fa-solid {
+        margin-right: 10px;
+    }
+
+    h1{
+        text-align:center;
+    }
+</style>
+
+
+
+<h1>Detalles de compras Insumos</h1>
+<hr>
+
+<div id="detallesRecuadro"> 
+<div id="Detalles">
+
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CantidadInsumoComprasInsumos)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CantidadInsumoComprasInsumos)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PrecioInsumoComprasInsumos)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PrecioInsumoComprasInsumos)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdCompraComprasInsumosNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdCompraComprasInsumosNavigation.IdCompra)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdInsumoComprasInsumosNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdInsumoComprasInsumosNavigation.IdInsumo)
+            </dd>
+        </dl>
+
+
+
+       <div id="Botones">
+            <div class="d-flex justify-content-between">
+
+                <div id="Editar" class="form-group">
+                    <a asp-action="Edit" asp-route-id="@Model?.IdComprasInsumos" class="btn btn-primary" style="background-color: #48110d; font-size: 18px; width: 100px; text-decoration: none; color: #fff; display: inline-block; text-align: center; padding: 6px 12px; margin-bottom: 0; font-weight: normal; line-height: 1.42857143; white-space: nowrap; vertical-align: middle; touch-action: manipulation; cursor: pointer; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px;">Editar</a>
+                </div>
+
+                <div id="Volver" class="form-group">
+                    <a asp-action="Index" class="btn btn-danger" style="background-color: #e12424; font-size: 18px; width: 100px;">Volver</a>
+                </div>
+            </div>
+       </div>
+
+</div>
+</div>
